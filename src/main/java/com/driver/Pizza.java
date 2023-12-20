@@ -5,7 +5,9 @@ public class Pizza {
     private int price;
     private Boolean isVeg;
     private String bill;
-
+    private int cheesePrice;
+    private int toppingPrice;
+    private int takeAwayPrice;
     private boolean cheese = false;
     private boolean toppings  = false;
     private boolean takeaway = false;
@@ -14,9 +16,16 @@ public class Pizza {
         // your code goes here
         if(isVeg){
             this.price  = 300;
+            cheesePrice  = 80;
+            toppingPrice  = 70;
         }
-        else
+        else {
             this.price = 400;
+            cheesePrice  = 80;
+            toppingPrice  = 120;
+        }
+
+        takeAwayPrice  = 20;
     }
 
     public int getPrice(){
@@ -25,49 +34,36 @@ public class Pizza {
 
     public void addExtraCheese(){
         // your code goes here
-        if(cheese==false) {
-            this.price += 80;
-            cheese = true;
-        }
-        else
-            return;
+        this.cheese  = true;
     }
 
     public void addExtraToppings(){
         // your code goes here
-        if(isVeg) {
-            if(toppings == false) {
-                this.price += 70;
-                toppings = true;
-            }
-            else
-                return;
-        }
-        else {
-            if(toppings == false) {
-                this.price += 120;
-                toppings = true;
-            }
-            else
-                return;
-        }
+        toppings = true;
     }
 
     public void addTakeaway(){
         // your code goes here
-        if(takeaway == false) {
-            this.price += 20;
-            takeaway = true;
-            return;
-        }
-        else
-            return;
-
+        takeaway = true;
 
     }
 
     public String getBill(){
         // your code goes here
-        return "Total Price: "+ this.price;
+        bill  = "Base price of pizza:"+this.price+ "/n";
+        if(cheese){
+            bill += "Extra Cheese Added:"+this.cheesePrice+"/n";
+            this.price += cheesePrice;
+        }
+        if(toppings){
+            bill += "Extra Toppings Added:" +this.toppingPrice+"/n";
+            this.price += toppingPrice;
+        }
+        if(takeaway){
+            bill += "Paperbag Added:"+this.takeAwayPrice+"/n";
+            this.price += takeAwayPrice;
+        }
+        bill += "Total Price:"+this.price;
+        return bill;
     }
 }
